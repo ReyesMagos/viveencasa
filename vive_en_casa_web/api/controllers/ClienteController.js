@@ -1,7 +1,7 @@
 /**
- * TipoReferenciaController
+ * ReferenciasController
  *
- * @description :: Server-side logic for managing tiporeferencias
+ * @description :: Server-side logic for managing Referencias
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 

@@ -11,6 +11,19 @@ module.exports = {
   	nombre:{
   		type:'string',
   		required:true
+  	}, telefono:{
+		type:'integer',
+		required:true
+  	},direccion:{
+		type:'string',
+		required:true
+  	}, parentezco:{
+  		type:'string',
+  		required:true,
+  		enum: ['Madre', 'Padre', 'Hermano(a)','Hijo(a)','Tío(a)', 'Primo(a)' ]
+  	},propietario:{
+  		model:'Cliente'
+  	}
   }
 };
 
