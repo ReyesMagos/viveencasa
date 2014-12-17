@@ -9,12 +9,20 @@ module.exports = {
 
   attributes: {
 
+  	codigo:{
+  		type:'integer',
+  		required:true,
+      unique:true
+  	},
   	nombre:{
   		type:'string',
   		required:true
   	},descripcion:{
   		type:'string',
   		required:true
+  	},productos:{
+  		collection:'producto',
+  		via:'tipoProducto'
   	}
 
   }

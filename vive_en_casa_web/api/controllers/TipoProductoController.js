@@ -12,6 +12,7 @@ module.exports = {
     create: function(req, res, next) {
 
         var tipoproducto = {
+            codigo:req.param('codigo'),
             nombre: req.param('nombre'),
             descripcion: req.param('descripcion')
         }

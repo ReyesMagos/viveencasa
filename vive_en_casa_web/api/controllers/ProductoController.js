@@ -6,6 +6,26 @@
  */
 
 module.exports = {
-	
-};
 
+    new: function(req, res) {
+        Provedor.find(function (err, provedores) {
+            if (err) {
+                console.log(err);
+                return;
+            }
+
+            TipoProducto.find(function (err, tiposDeProducto) {
+                //console.log(tiposDeProducto);
+                if(err){
+                	console.log(err);
+                }
+                res.view({
+                    provedores: provedores,
+                    tiposDeProducto: tiposDeProducto
+                });
+              
+            });
+
+        });
+    }
+};
