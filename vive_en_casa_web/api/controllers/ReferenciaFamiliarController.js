@@ -12,6 +12,7 @@ module.exports = {
 	}, create:function  (req, res, next) {
 		var referencia={
 			nombre:req.param('nombre'),
+			apellido:req.param('apellido'),
 			telefono:req.param('telefono'),
 			direccion:req.param('direccion'),
 			parentezco:req.param('parentezco')

@@ -11,7 +11,10 @@ module.exports = {
   	nombre:{
   		type:'string',
   		required:true
-  	}, telefono:{
+  	},apellido:{
+      type:'string',
+      required:true
+    }, telefono:{
 		type:'integer',
 		required:true
   	},direccion:{
