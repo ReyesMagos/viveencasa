@@ -11,7 +11,8 @@ module.exports = {
 
   	codigo:{
   		type:'integer', 
-  		required:true
+  		required:true,
+      unique:true
   	}, nombre:{
   		type:'string',
   		required:true
