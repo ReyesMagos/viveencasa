@@ -1,0 +1,28 @@
+<div class="container">
+	<h2>Productos</h2>
+	<table class="table table-hover" >
+		<th>Codigo</th>
+		<th>Nombre</th>
+		<th>Cantidad en Bodega</th>
+		<th>Precio</th>
+		<th colspan="2" class="text-center">Acciones</th>
+		<% _.each(productos, function(producto) { %>
+		<tr>
+			<td><%=producto.codigo%></td>
+			<td><%=producto.nombre%></td>
+			<td><%=producto.cantidadBodega%></td>
+			<td><%=producto.precio%></td>
+			<td>
+				<a href="/producto/show/<%=producto.id%>" class="btn btn-success btn-sm ">Detalles</a>
+			</td>
+			<td>
+				<form action="/producto/destroy/<%= producto.id%>" method="POST" accept-charset="utf-8">
+					<input type="hidden" name="_method" value="delete"/>
+					<input type="submit"  class="btn btn-sm btn-danger" value="Eliminar"/>
+					<input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+				</form>
+			</td>
+		</tr>
+		<%})%>
+	</table>
+</div>
