@@ -11,7 +11,7 @@ module.exports = {
   		tipoDocumento:{
   			type:'string',
   			required:true,
-  			enum: ['Cedula', 'Pasaporte']
+  			enum: ['Cédula', 'Pasaporte']
   		}, documento:{
   			type:'integer',
   			required:true,
@@ -19,7 +19,7 @@ module.exports = {
   		}, nombre:{
   			type:'string',
   			required:true
-  		}, apellidos:{
+  		}, apellido:{
   			type:'string',
   			required:true
   		}, telefono:{
@@ -35,7 +35,7 @@ module.exports = {
   			type:'string',
   			required:true
   		}, fechaNacimiento:{
-  			type:'date',
+  			type:'string',
   			required:true
   		},referenciasFamiliares:{
   			collection: 'ReferenciaFamiliar',

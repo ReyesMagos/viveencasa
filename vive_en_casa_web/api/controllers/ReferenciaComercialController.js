@@ -22,8 +22,16 @@ module.exports = {
 		ReferenciaComercial.create(referencia, function tipoReferenciaCreated (err, Referencia) {
 			if (err){
 				console.log(err);//nos muestra el error por consola
-				return next(err);//muestra el error redirige a la pag
+				req.session.flash ={
+					err: err
+				}
+			}else{
+				var referenciaComercialCreada=[{mensaje:'La referencia comercial fue creada exitosamente'}]
+				req.session.flash={
+					err:referenciaComercialCreada
+				}
 			}
+			return res.redirect('referenciacomercial/new')
 		});
 	}
 };

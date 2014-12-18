@@ -7,22 +7,38 @@
 
 module.exports = {
 
-	new: function (req, res) {
-		res.view();
+	new: function (req, res, next) {
+		Cliente.findOne(req.param('id'), function  clienteFounded(err, cliente) {
+			if(err){
+				return next('err');
+			}
+			return res.view({cliente:cliente});
+		});
+		
+
 	}, create:function  (req, res, next) {
 		var referencia={
 			nombre:req.param('nombre'),
 			apellido:req.param('apellido'),
 			telefono:req.param('telefono'),
 			direccion:req.param('direccion'),
-			parentezco:req.param('parentezco')
+			parentezco:req.param('parentezco'),
+			propietario:req.param('id')
 		}
 
-		ReferenciaFamiliar.create(referencia, function tipoReferenciaCreated (err, Referencia) {
+		ReferenciaFamiliar.create(referencia, function referenciaFamiliarCreated (err, Referencia) {
 			if (err){
 				console.log(err);//nos muestra el error por consola
-				return next(err);//muestra el error redirige a la pag
+				req.session.flash ={
+					err: err
+				}
+			}else{
+				var referenciaFamiliarCreada=[{mensaje:'La referencia familiar fue creada exitosamente'}]
+				req.session.flash={
+					err:referenciaFamiliarCreada
+				}
 			}
+			return res.redirect('/referenciafamiliar/new/'+req.param('id'));
 		});
 	}
 	

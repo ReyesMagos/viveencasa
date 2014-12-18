@@ -1,0 +1,121 @@
+<div class="container">
+	<div class="bg">
+		
+		<div class="row">
+			<div class="col-sm-12 col-offset-1">
+				<div class="contact-form">
+					<h2 class="title text-center">Información Cliente</h2>
+					<!-- <div class="status alert alert-success" ></div>-->
+					
+					
+					<form id="main-contact-form" class="contact-form row" name="contact-form" method="post" action="/cliente/create">
+						<div class="form-group col-md-2">
+							<label name="documento"  >Tipo de Documento</label>
+						</div>
+						<div class="form-group col-md-4">
+							<p ><%=cliente.tipoDocumento%></p>
+						</div>
+						<div class="form-group col-md-2">
+							<label name="documento"  >Número de Documento</label>
+						</div>
+						<div class="form-group col-md-4">
+							<p ><%=cliente.documento%></p>
+						</div>
+						<div class="form-group col-md-2">
+							<label  >Nombres</label>
+						</div>
+						<div class="form-group col-md-4">
+							<p ><%=cliente.nombre%></p>
+						</div>
+						<div class="form-group col-md-2">
+							<label >Apellidos</label>
+						</div>
+						<div class="form-group col-md-4">
+							<p ><%=cliente.apellido%></p>
+						</div>
+						<div class="form-group col-md-2">
+							<label   >Teléfono</label>
+						</div>
+						<div class="form-group col-md-4">
+							<p ><%=cliente.telefono%></p>
+						</div>
+						<div class="form-group col-md-2">
+							<label  >Celular</label>
+						</div>
+						<div class="form-group col-md-4">
+							<p ><%=cliente.celular%></p>
+						</div>
+						<div class="form-group col-md-2">
+							<label >Dirección</label>
+						</div>
+						<div class="form-group col-md-4">
+							<p ><%=cliente.direccion%></p>
+						</div>
+						<div class="form-group col-md-2">
+							<label  >E-mail</label>
+						</div>
+						<div class="form-group col-md-4">
+							<p ><%=cliente.email%></p>
+						</div>
+						<div class="form-group col-md-2">
+							<label  >Fecha de Nacimiento</label>
+						</div>
+						<div class="form-group col-md-4">
+							<p ><%=cliente.fechaNacimiento%></p>
+						</div>
+
+						<div class="form-group ">
+							<a href="/cliente/edit/<%=cliente.id%>" class="btn btn-success btn-sm ">Editar</a>
+						
+						</div>				
+					</form>
+					
+				</div>
+			</div>
+
+			
+			
+			
+		</div>
+
+<div class="row">
+
+<h2 class="title text-center">Referencias Familiares</h2>
+				<table class="table table-hover" >
+					
+					<th>Nombre</th>
+					<th>Teléfono</th>
+					<th>Dirección</th>
+					<th>Parentezco</th>
+					
+					<th colspan="2" class="text-center">Acciones</th>
+					
+					<% _.each(refFamiliares, function(familiar) { %>
+					<tr>
+						
+						<td><%=familiar.nombre%> <%=cliente.apellido%></td>
+						<td><%=familiar.telefono%></td>
+						<td><%=familiar.direccion%></td>
+						<td><%=familiar.parentezco%></td>
+						
+						
+						<td>
+							<a href="/cliente/show/<%=cliente.id%>" class="btn btn-success btn-sm ">Detalles</a>
+						</td>
+						<td>
+							<form action="/cliente/destroy/<%= cliente.id%>" method="POST" accept-charset="utf-8">
+								<input type="hidden" name="_method" value="delete"/>
+								<input type="submit"  class="btn btn-sm btn-danger" value="Eliminar"/>
+								<input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+							</form>
+						</td>
+					</tr>
+					<%})%>
+				</table>
+
+	</div>
+
+
+
+	</div>
+</div>

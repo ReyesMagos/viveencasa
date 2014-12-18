@@ -5,14 +5,26 @@
 	    		<div class="col-sm-8">
 	    			<div class="contact-form">
 	    				<h2 class="title text-center">Referencia Familiar</h2>
-	    				<div class="status alert alert-success" style="display: none"></div>
-				    	<form id="main-contact-form" class="contact-form row" name="contact-form" method="post" action="referenciafamiliar/create">
+	    				<!-- <div class="status alert alert-success" ></div>-->
+	    					<% if(flash && flash.err) { %>
+							<ul class="alert alert-success">
+								<% Object.keys(flash.err).forEach(function(error){ %>
+								<li> <%- JSON.stringify(flash.err[error]) %></li>
+								<% }) %>
+							</ul>
+							<% } %>
+	    				
+
+				    	<form id="main-contact-form" class="contact-form row" name="contact-form" method="post" action="/referenciafamiliar/create/<%=cliente.id%>">
+				    		<h2>Cliente: <%=cliente.nombre%> <%=cliente.apellido%></h2>
 				            <div class="form-group col-md-6">
 				                <input type="text" name="nombre" class="form-control" required="required" placeholder="Nombre">
 				            </div>
-				           
+				           <div class="form-group col-md-6">
+				                <input type="text" name="apellido" class="form-control" required="required" placeholder="Apellido">
+				            </div>
 				            <div class="form-group col-md-12">
-				                <input type="numeric" name="telefono" class="form-control" required="required" placeholder="Teléfono">
+				                <input type="number" name="telefono" class="form-control" required="required" placeholder="Teléfono">
 				            </div>
 
 				            <div class="form-group col-md-12">
