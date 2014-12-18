@@ -34,6 +34,9 @@ module.exports = {
         garantia: {
             type: 'string',
             required: true
+        },precio:{
+            type:'float',
+            required:true
         },
         provedor: {
             model: 'provedor',
@@ -42,6 +45,11 @@ module.exports = {
         tipoProducto: {
             model: 'tipoproducto',
             required: true
+        },
+        imagenesProducto: {
+            collection: 'imagenproducto',
+            via: 'producto'
+
         }
 
     }
