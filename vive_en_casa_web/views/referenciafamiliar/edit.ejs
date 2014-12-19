@@ -1,0 +1,76 @@
+<div class="container">
+<div class="bg">
+	    	   	
+    		<div class="row">  	
+	    		<div class="col-sm-11">
+	    			<div class="contact-form">
+	    				<h2 class="title text-center">Referencia Familiar</h2>
+	    				<!-- <div class="status alert alert-success" ></div>-->
+	    					<% if(flash && flash.err) { %>
+							<ul class="alert alert-success">
+								<% Object.keys(flash.err).forEach(function(error){ %>
+								<li> <%- JSON.stringify(flash.err[error]) %></li>
+								<% }) %>
+							</ul>
+							<% } %>
+	    				
+
+				    	<form id="main-contact-form" class="contact-form row" name="contact-form" method="post" action="/referenciafamiliar/update/<%=referencia.id%>">
+				    	 
+				            <div class="form-group col-md-2">
+				                <label  >Nombres</label>
+				            </div>
+				            <div class="form-group col-md-4">
+				                <input type="text" name="nombre" class="form-control" required="required" value="<%=referencia.nombre%>">
+				            </div>
+				            <div class="form-group col-md-2">
+				                <label  >Apellidos</label>
+				            </div>
+				           <div class="form-group col-md-4">
+				                <input type="text" name="apellido" class="form-control" required="required" value="<%=referencia.apellido%>">
+				            </div>
+				            <div class="form-group col-md-2">
+				                <label  >Teléfono</label>
+				            </div>
+				            <div class="form-group col-md-4">
+				                <input type="number" name="telefono" class="form-control" required="required" value="<%=referencia.telefono%>" >
+				            </div>
+				          
+				            <div class="form-group col-md-2">
+				                <label  >Dirección</label>
+				            </div>
+
+				            <div class="form-group col-md-4">
+				                <input type="text" name="direccion" class="form-control" required="required" value="<%=referencia.direccion%>">
+				            </div>
+				            <div class="form-group col-md-2">
+							<label >Parentezco</label>
+						</div>
+
+				            <div class="form-group col-md-4">
+				                <select  name="parentezco" class="form-control" required="required" >
+				                <option value="Madre">Madre</option>
+				                <option value="Padre">Padre</option>
+				                <option value="Hermano(a)">Hermano(a)</option>
+				                <option value="Hijo">Hijo</option>
+				                <option value="Tío(a)">Tío(a)</option>
+				                <option value="Primo(a)">Primo(a)</option>
+				                </select>
+				            </div>
+				            
+				            
+
+				                                   
+				            <div class="form-group col-md-4">
+				                <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
+				                <input type="hidden" name="propietario" value="<%=referencia.propietario%>"/>
+				            </div>
+				        </form>
+	    			</div>
+	    		</div>
+	    		
+	    				
+	    			</div>
+    			</div>    			
+	    	</div>  
+    	

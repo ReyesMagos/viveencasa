@@ -14,8 +14,7 @@
 						</div>
 						<div class="form-group col-md-4">
 							<p ><%=cliente.tipoDocumento%></p>
-
-					
+							
 						</div>
 						<div class="form-group col-md-2">
 							<label name="documento"  >Número de Documento</label>
@@ -78,7 +77,7 @@
 			
 		</div>
 		<div class="row">
-			<h2 class="title text-center">Referencias Familiares</h2>
+			<h2 class="title text-center">Referencias Comerciales</h2>
 			<table class="table table-hover" >
 				
 				<th>Nombre</th>
@@ -91,14 +90,49 @@
 				<% _.each(refFamiliares, function(familiar) { %>
 				<tr>
 					
-					<td><%=familiar.nombre%> <%=cliente.apellido%></td>
+					<td><%=familiar.nombre%> <%=familiar.apellido%></td>
 					<td><%=familiar.telefono%></td>
 					<td><%=familiar.direccion%></td>
 					<td><%=familiar.parentezco%></td>
 					
 					
 					<td>
-						<a href="/cliente/show/<%=cliente.id%>" class="btn btn-success btn-sm ">Detalles</a>
+						<a href="/referenciafamiliar/edit/<%=familiar.id%>" class="btn btn-success btn-sm ">Editar</a>
+					</td>
+					<td>
+						<form action="/cliente/destroy/<%= cliente.id%>" method="POST" accept-charset="utf-8">
+							<input type="hidden" name="_method" value="delete"/>
+							<input type="submit"  class="btn btn-sm btn-danger" value="Eliminar"/>
+							<input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+						</form>
+					</td>
+				</tr>
+				<%})%>
+			</table>
+		</div>
+
+		<div class="row">
+			<h2 class="title text-center">Referencias Comerciales</h2>
+			<table class="table table-hover" >
+				
+				<th>Nombre</th>
+				<th>Teléfono</th>
+				<th>Dirección</th>
+				<th>Parentezco</th>
+				
+				<th colspan="2" class="text-center">Acciones</th>
+				
+				<% _.each(refFamiliares, function(familiar) { %>
+				<tr>
+					
+					<td><%=familiar.nombre%> <%=familiar.apellido%></td>
+					<td><%=familiar.telefono%></td>
+					<td><%=familiar.direccion%></td>
+					<td><%=familiar.parentezco%></td>
+					
+					
+					<td>
+						<a href="/cliente/show/<%=cliente.id%>" class="btn btn-success btn-sm ">Editar</a>
 					</td>
 					<td>
 						<form action="/cliente/destroy/<%= cliente.id%>" method="POST" accept-charset="utf-8">
