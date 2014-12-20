@@ -4,7 +4,7 @@
     		<div class="row">  	
 	    		<div class="col-sm-11">
 	    			<div class="contact-form">
-	    				<h2 class="title text-center">Editar Referencia Familiar</h2>
+	    				<h2 class="title text-center">Editar Referencia Comercial</h2>
 	    				<!-- <div class="status alert alert-success" ></div>-->
 	    					<% if(flash && flash.err) { %>
 							<ul class="alert alert-success">
@@ -15,7 +15,7 @@
 							<% } %>
 	    				
 
-				    	<form id="main-contact-form" class="contact-form row" name="contact-form" method="post" action="/referenciafamiliar/update/<%=referencia.id%>">
+				    	<form id="main-contact-form" class="contact-form row" name="contact-form" method="post" action="/referenciacomercial/update/<%=referencia.id%>">
 				    	 
 				            <div class="form-group col-md-2">
 				                <label  >Nombres</label>
@@ -44,21 +44,20 @@
 				                <input type="text" name="direccion" class="form-control" required="required" value="<%=referencia.direccion%>">
 				            </div>
 				            <div class="form-group col-md-2">
-							<label >Parentezco</label>
-						</div>
+				           		 <label >Capacidad Endeudamiento</label>
+							</div>
+							<div class="form-group col-md-4">
+								<input type="number" name="capacidadEndeudamiento" class="form-control" required="required" value="<%=referencia.capacidadEndeudamiento%>">
+							</div>
 
-				            <div class="form-group col-md-4">
-				                <select  name="parentezco" class="form-control" required="required" >
-				                <option value="Madre">Madre</option>
-				                <option value="Padre">Padre</option>
-				                <option value="Hermano(a)">Hermano(a)</option>
-				                <option value="Hijo">Hijo</option>
-				                <option value="Tío(a)">Tío(a)</option>
-				                <option value="Primo(a)">Primo(a)</option>
-				                </select>
-				            </div>
-				            
-				            
+							<div class="form-group col-md-2">
+								<label >Referencia de Pago</label>
+							</div>
+							<div class="form-group col-md-4">
+								<input type="text" name="infoPago" class="form-control" required="required" value="<%=referencia.infoPago%>">
+							</div>
+					            
+					            
 
 				                                   
 				            <div class="form-group col-md-4">

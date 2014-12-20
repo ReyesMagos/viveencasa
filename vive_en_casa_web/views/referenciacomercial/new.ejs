@@ -1,0 +1,68 @@
+<div class="container">
+	<div class="bg">
+		
+		<div class="row">
+			<div class="col-sm-8">
+				<div class="contact-form">
+					<h2 class="title text-center">Referencia Comercial</h2>
+					<!-- <div class="status alert alert-success" ></div>-->
+					<% if(flash && flash.err) { %>
+					<ul class="alert alert-success">
+						<% Object.keys(flash.err).forEach(function(error){ %>
+						<li> <%- JSON.stringify(flash.err[error]) %></li>
+						<% }) %>
+					</ul>
+					<% } %>
+					
+					<form id="main-contact-form" class="contact-form row" name="contact-form" method="post" action="/referenciacomercial/create/<%=cliente.id%>">
+						<h2 class="title text-justify">  Cliente: <%=cliente.nombre%> <%=cliente.apellido%></h2>
+						<div class="form-group col-md-2">
+							<label >Nombre</label>
+						</div>
+						<div class="form-group col-md-4">
+							<input type="text" name="nombre" class="form-control" required="required" >
+						</div>
+						<div class="form-group col-md-2">
+							<label >Apellido</label>
+						</div>
+						<div class="form-group col-md-4">
+							<input type="text" name="apellido" class="form-control" required="required" >
+						</div>
+						<div class="form-group col-md-2">
+							<label >Teléfono</label>
+						</div>
+						<div class="form-group col-md-4">
+							<input type="number" name="telefono" class="form-control" required="required" >
+						</div>
+						<div class="form-group col-md-2">
+							<label >Dirección</label>
+						</div>
+						<div class="form-group col-md-4">
+							<input type="text" name="direccion" class="form-control" required="required" >
+						</div>
+						<div class="form-group col-md-2">
+							<label >Capacidad Endeudamiento</label>
+						</div>
+						<div class="form-group col-md-4">
+							<input type="number" name="capacidadEndeudamiento" class="form-control" required="required" >
+						</div>
+
+						<div class="form-group col-md-2">
+							<label >Referencia de Pago</label>
+						</div>
+						<div class="form-group col-md-4">
+							<input type="text" name="infoPago" class="form-control" required="required" >
+						</div>
+						
+						<div class="form-group col-md-4">
+							<input type="submit" name="submit" class="btn btn-primary pull-right" value="Guardar y continuar">
+							<a href="/cliente/show/<%=cliente.id%>" class="btn btn-primary pull-right">Terminar</a>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>

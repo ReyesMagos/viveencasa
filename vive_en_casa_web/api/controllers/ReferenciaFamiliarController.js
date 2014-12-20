@@ -1,5 +1,5 @@
 /**
- * TipoReferenciaController
+ * ReferenciaFamiliarController
  *
  * @description :: Server-side logic for managing tiporeferencias
  * @help        :: See http://links.sailsjs.org/docs/controllers
@@ -71,7 +71,7 @@ module.exports = {
 			if (err) {
 				return next(err);
 			}
-			return res.redirect('/cliente/show/'+req.param('id'));
+			return res.redirect('/cliente/show/'+req.param('propietario'));
 		});
 		
 	}
