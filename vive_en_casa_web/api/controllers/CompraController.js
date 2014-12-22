@@ -1,0 +1,11 @@
+/**
+ * CompraController
+ *
+ * @description :: Server-side logic for managing compras
+ * @help        :: See http://links.sailsjs.org/docs/controllers
+ */
+
+module.exports = {
+	
+};
+
