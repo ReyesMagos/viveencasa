@@ -4,6 +4,7 @@
  * @description :: Server-side logic for managing productoes
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
+
 module.exports = {
     new: function(req, res) {
         Provedor.find(function(err, provedores) {
@@ -45,6 +46,12 @@ module.exports = {
         });
     },
     show: function(req, res, next) {
+        var socket = req.socket;
+        var io = sails.io;
+        socket.on('culo',function(msg) {
+            console.log('message: ' + msg);
+        
+        });
         Producto.findOne(req.param('id'), function productoFounded(err, producto) {
             if (err) {
                 console.log(err);

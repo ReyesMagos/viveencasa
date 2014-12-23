@@ -22,29 +22,38 @@ module.exports = {
         });
     },
     upload: function(req, res) {
+        console.log('Imprimo' +req.query);
+        if (req.file('imagenProducto')._files.length>0) {
+            var filename1 = req.file('imagenProducto')._files[0].stream.filename;
+            var filename1 = req.file('imagenProducto')._files[0].stream.filename;
+            var imagenProducto = req.file('imagenProducto');
+            var uploadPath = process.cwd() + '/assets/images/';
+            var prod = req.param('id');
+            console.log("PRODCUTO IID " + prod);
+            imagenProducto.upload({
+                dirname: uploadPath,
+                saveAs: filename1
+            }, function onUploadComplete(err, files) {
+                if (err)
+                    return res.serverError(err);
+                res.redirect('/imagenproducto/create?producto=' + prod +
+                    '&filename=' + filename1);
+            });
+        }else{
+            console.log('else');
+            req.session.flash={
+                err:[{mensaje:'No selecciono imagen'}]
+            }
+            res.redirect('/producto/edit/'+req.param('id'));
+        }
 
-        var filename1 = req.file('imagenProducto')._files[0].stream.filename;
-        var imagenProducto = req.file('imagenProducto');
-        var uploadPath = process.cwd() + '/assets/images/';
-        var prod = req.param('id');
-        console.log("PRODCUTO IID " + prod);
-        imagenProducto.upload({
-            dirname: uploadPath, saveAs:filename1
-        }, function onUploadComplete(err, files) {
-
-          
-             if (err)
-                return res.serverError(err);
-            console.log('file' + files[0].UUID + ', path' + uploadPath);
-
-            res.redirect('/imagenproducto/create?producto=' + prod +
-                '&filename=' + filename1);
-         
-           
-
-        });
     },
     create: function(req, res) {
+        var socket = req.socket;
+        var io = sails.io;
+        var imageUploadMessage = 'Ok';
+
+
 
         imP = {
             filename: req.param('filename'),
@@ -56,7 +65,10 @@ module.exports = {
         ImagenProducto.create(imP, function imagenProductoCreated(err, imagenProducto) {
             if (err)
                 console.log(err);
-            res.redirect('/producto/show/' + req.param('producto'))
+            req.session.flash={
+                err:[{mensaje:'Imagen Subida Exitosamente'}]
+            }
+            res.redirect('/producto/edit/' + req.param('producto'))
 
         });
 
