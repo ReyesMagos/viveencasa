@@ -1,5 +1,5 @@
 /**
-* TipoReferencia.js
+* PlanSepare.js
 *
 * @description :: TODO: You might write a short summary of how this model works and what it represents here.
 * @docs        :: http://sailsjs.org/#!documentation/models
@@ -8,24 +8,22 @@
 module.exports = {
 
   attributes: {
-  	nombre:{
-  		type:'string',
-  		required:true
-  	}, apellido:{
-      type:'string',
-      required:true
-    },telefono:{
+  	numeroCuotas:{
   		type:'integer',
   		required:true
-  	},direccion:{
+  	},fecha:{
+      type:'string',
+      required:true
+    },valorTotal:{
+      type:'float'
+    },fechaFinPago:{
   		type:'string',
   		required:true
-  	}, parentezco:{
-  		type:'string',
-  		required:true,
-  		enum: ['Madre', 'Padre', 'Hermano(a)','Hijo(a)','Tío(a)', 'Primo(a)' ]
-  	},propietario:{
+  	},cliente:{
   		model:'Cliente'
+  	}, productoplansepare:{
+  		collection:'productoplansepare',
+  		via:'productoPlanSepare'
   	}
   }
 };

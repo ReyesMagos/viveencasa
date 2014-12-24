@@ -1,10 +1,26 @@
 <div class="container">
 	<div class="bg">
+
+<script type="text/javascript">
+	$( document ).ready(function() {
+    $( "#target" ).click(function() {
+    	var x=$("#target").val();
+    	//alert(x);
+    	
+    	$('input[name=cliente]').val(x);
+
+    	
+});
+});
+
+
+</script>
+	
 		
 		<div class="row">
 			<div class="col-sm-12">
 				
-				<h2 class="title text-center">Referencia Familiar</h2>
+				<h2 class="title text-center">Clientes</h2>
 				<table class="table table-hover" >
 					<th>Documento</th>
 					<th>Nombre</th>
@@ -33,6 +49,11 @@
 							<a href="/cliente/show/<%=cliente.id%>" class="btn btn-success btn-sm ">Detalles</a>
 						</td>
 						<td>
+							<button id="target" value="<%=cliente.id%>" type="button" data-toggle="modal" data-target="#myModal">Nueva Compra</button>
+
+
+						</td>
+						<td>
 							<form action="/cliente/destroy/<%= cliente.id%>" method="POST" accept-charset="utf-8">
 								<input type="hidden" name="_method" value="delete"/>
 								<input type="submit"  class="btn btn-sm btn-danger" value="Eliminar"/>
@@ -44,8 +65,68 @@
 				</table>
 				
 			</div>
+			 
+			 
 			
-			
+		<a href="#myModal">modal</a>
+		</div>
+	</div>
+</div>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+<div id="myModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title title">Nueva Compra</h4>
+				
+			</div>
+			<div class="row">
+				<div class="col-sm-11">
+					<div class="contact-form">
+						
+						<!-- <div class="status alert alert-success" ></div>-->
+						<% if(flash && flash.err) { %>
+						<ul class="alert alert-success">
+							<% Object.keys(flash.err).forEach(function(error){ %>
+							<li> <%- JSON.stringify(flash.err[error]) %></li>
+							<% }) %>
+						</ul>
+						<% } %>
+						
+						<div class="modal-body">
+							<form id="main-contact-form" class="contact-form row" name="contact-form" method="post" action="/compra/create">
+								
+								
+								<div class="form-group col-md-2">
+									
+									<input type="hidden" name="cliente" value=""/>
+								</div>
+								<div class="form-group col-md-4">
+									<label name="fecha" >Fecha y Hora</label>
+								</div>
+								<div class="form-group col-md-5">
+									<input type="datetime-local" name="fecha" class="form-control" required="required" >
+								</div>
+								
+
+								<div class="form-group col-md-5 pull-right">
+							
+							<button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+							<input type="submit" name="submit" class="btn btn-primary pull-right" value="Continuar">
+						</div>
+							</form>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
 		</div>
 	</div>
 </div>

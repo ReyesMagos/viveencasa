@@ -17,21 +17,16 @@ module.exports = {
         nombre: {
             type: 'string',
             required: true
-        },
-        ancho: {
+        },ancho: {
             type: 'float'
-        },
-        alto: {
+        },alto: {
             type: 'float'
-        },
-        descripcion: {
+        },descripcion: {
             type: 'string',
             required: true
-        },
-        cantidadBodega: {
+        },cantidadBodega: {
             type: 'integer'
-        },
-        garantia: {
+        },garantia: {
             type: 'string',
             required: true
         },precio:{
@@ -50,6 +45,12 @@ module.exports = {
             collection: 'imagenproducto',
             via: 'producto'
 
+        }, productoCompra:{
+            collection:'productoCompra',
+            via: 'producto'
+        }, productoPlanSepare:{
+            collection:'productoPlanSepare',
+            via: 'productoPlanSepare'
         }
 
     }

@@ -28,12 +28,18 @@ module.exports = {
 
 		ReferenciaFamiliar.create(referencia, function referenciaFamiliarCreated (err, Referencia) {
 			if (err){
-				console.log(err);//nos muestra el error por consola
+				console.log('ssss-->'+err.status);//nos muestra el error por consola
+				var error=[{Error:''}];
+				if(err.status=='400'){
+					error=[{Error:'Informacion Invalida'}];
+				}
 				req.session.flash ={
-					err: err
+					err: error
 				}
 			}else{
 				var referenciaFamiliarCreada=[{mensaje:'La referencia familiar fue creada exitosamente'}]
+				console.log('ssss-->'+referenciaFamiliarCreada);
+
 				req.session.flash={
 					err:referenciaFamiliarCreada
 				}

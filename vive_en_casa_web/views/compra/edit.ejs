@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-sm-11">
 				<div class="contact-form">
-					<h2 class="title text-center">Referencia Familiar</h2>
+					<h2 class="title text-center">Editar Cliente</h2>
 					<!-- <div class="status alert alert-success" ></div>-->
 					<% if(flash && flash.err) { %>
 					<ul class="alert alert-success">
@@ -14,9 +14,9 @@
 					</ul>
 					<% } %>
 					
-					<form id="main-contact-form" class="contact-form row" name="contact-form" method="post" action="/cliente/create">
+					<form id="main-contact-form" class="contact-form row" name="contact-form" method="post" action="/cliente/update/<%=cliente.id%>">
 						<div class="form-group col-md-2">
-							<label name="tipoDocumento"  >Tipo de Documento</label>
+							<label name="tipoDocumento">Tipo de Documento</label>
 						</div>
 						<div class="form-group col-md-4">
 							<select  name="tipoDocumento" class="form-control" required="required" >
@@ -28,49 +28,49 @@
 							<label  >Número de Documento</label>
 						</div>
 						<div class="form-group col-md-4">
-							<input type="number" name="documento" class="form-control" required="required" >
+							<input type="number" name="documento" class="form-control" required="required" value="<%=cliente.documento%>" >
 						</div>
 						<div class="form-group col-md-2">
 							<label  >Nombres</label>
 						</div>
 						<div class="form-group col-md-4">
-							<input type="text" name="nombre" class="form-control" required="required" >
+							<input type="text" name="nombre" class="form-control" required="required" value="<%=cliente.nombre%>">
 						</div>
 						<div class="form-group col-md-2">
 							<label  >Apellidos</label>
 						</div>
 						<div class="form-group col-md-4">
-							<input type="text" name="apellido" class="form-control" required="required" >
+							<input type="text" name="apellido" class="form-control" required="required" value="<%=cliente.apellido%>">
 						</div>
 						<div class="form-group col-md-2">
 							<label  >Teléfono</label>
 						</div>
 						<div class="form-group col-md-4">
-							<input type="number" name="telefono" class="form-control" required="required" >
+							<input type="number" name="telefono" class="form-control" required="required" value="<%=cliente.telefono%>" >
 						</div>
 						<div class="form-group col-md-2">
 							<label   >Celular</label>
 						</div>
 						<div class="form-group col-md-4">
-							<input type="number" name="celular" class="form-control" required="required" >
+							<input type="number" name="celular" class="form-control" required="required" value="<%=cliente.celular%>">
 						</div>
 						<div class="form-group col-md-2">
 							<label  >Dirección</label>
 						</div>
 						<div class="form-group col-md-4">
-							<input type="text" name="direccion" class="form-control" required="required" >
+							<input type="text" name="direccion" class="form-control" required="required" value="<%=cliente.direccion%>">
 						</div>
 						<div class="form-group col-md-2">
 							<label  >E-mail</label>
 						</div>
 						<div class="form-group col-md-4">
-							<input type="email" name="email" class="form-control" required="required" >
+							<input type="email" name="email" class="form-control" required="required" value="<%=cliente.email%>">
 						</div>
 						<div class="form-group col-md-2">
-							<label name="documento"  >Fecha de Nacimiento</label>
+							<label  >Fecha de Nacimiento</label>
 						</div>
 						<div class="form-group col-md-4">
-							<input type="date" name="fechaNacimiento" class="form-control" required="required" >
+							<input type="date" name="fechaNacimiento" class="form-control" required="required" value="<%=cliente.fechaNacimiento%>">
 						</div>
 						
 						<div class="form-group col-md-4">
