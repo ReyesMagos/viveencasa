@@ -76,14 +76,15 @@ module.exports = {
         console.log(imP);
 
         ImagenProducto.create(imP, function imagenProductoCreated(err, imagenProducto) {
-            if (err)
+            if (err){
                 console.log(err);
-            req.session.flash = {
-                err: [{
-                    mensaje: 'Imagen Subida Exitosamente'
-                }]
+                req.session.flash = {
+                    err: err
+                }
+                return res.redirect('/producto/edit/' + req.param('producto'));
             }
-            res.redirect('/producto/edit/' + req.param('producto'));
+
+            return res.redirect('/imagenproducto/new/' + req.param('producto'));
 
         });
 
@@ -98,11 +99,11 @@ module.exports = {
                 console.log(err);
                 return next(err);
             }
-            console.log('borrado: '+process.cwd() + '/assets/images/' + req.param('filename'));
-            ImagenProducto.destroy(req.param('id'), function imagenProductoDestroyed (err) {
-                if(err)
+            console.log('borrado: ' + process.cwd() + '/assets/images/' + req.param('filename'));
+            ImagenProducto.destroy(req.param('id'), function imagenProductoDestroyed(err) {
+                if (err)
                     return next(err);
-                    res.redirect('/imagenproducto/new/' + req.param('producto'));
+                res.redirect('/imagenproducto/new/' + req.param('producto'));
             });
         });
 
