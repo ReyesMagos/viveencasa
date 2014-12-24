@@ -1,0 +1,42 @@
+<div class="container">
+	<div class="bg">
+		
+		<div class="row">
+			<div class="col-sm-12">
+				
+				<h2 class="title text-center">Referencia Familiar</h2>
+				<table class="table table-hover" >
+					<th>Codigo</th>
+					<th>Nombre</th>
+					<th>Descripcion</th>
+					<th colspan="2" class="text-center">Acciones</th>
+					<th></th>
+					<th></th>
+					<% _.each(provedores, function(provedor) { %>
+					<tr>
+						<td><%=provedor.codigo%></td>
+						<td><%=provedor.nombre%> </td>
+						<td><%=provedor.descripcion%></td>
+						<td>
+							<a href="/provedor/show/<%=provedor.id%>" class="btn btn-primary btn-sm ">Detalles</a>
+						</td>
+							<td>
+							<a href="/provedor/edit/<%=provedor.id%>" class="btn btn-success btn-sm ">Editar</a>
+						</td>
+						<td>
+							<form action="/provedor/destroy/<%= provedor.id%>" method="POST" accept-charset="utf-8">
+								<input type="hidden" name="_method" value="Borrar"/>
+								<input type="submit"  class="btn btn-sm btn-danger" value="Eliminar"/>
+								<input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+							</form>
+						</td>
+					</tr>
+					<%})%>
+				</table>
+				
+			</div>
+			
+			
+		</div>
+	</div>
+</div>

@@ -15,16 +15,42 @@
 					<form  enctype="multipart/form-data" id="main-contact-form" class="contact-form row" method="post" action="/imagenproducto/upload/<%=producto.id%>">
 						<div class="form-group col-md-10">
 							<label>Agregar imagen</label>
-							<input type="file" name="imagenProducto" />
+							<input type="file" name="imagen" />
 						</div>
 						<div class="form-group col-md-3">
 							<div class="form-group col-md-10">
 								<input type="submit" name="submit" class="btn btn-primary pull-right" value="Guardar">
 							</div>
-						</form>
-						<a href="/producto/show/<%=producto.id%>" class="btn btn-primary pull-right">Volver</a>
-					</div>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-sm-12 padding-right">
+				<div class="features_items"><!--features_items-->
+				<h2 class="title text-center">Imagenes</h2>
+				
+				<% _.each(imagenes, function(imagen) { %>
+				<div class="col-sm-4">
+					<div class="product-image-wrapper">
+						<div class="single-products">
+							<div class="productinfo text-center">
+								<img src="/images/<%=imagen.filename%>"height="268" width="249" />
+							</div>
+						</div>
+						<div class="choose">
+							<ul class="nav nav-pills nav-justified">
+								<li><a href="/imagenproducto/delete/<%=imagen.id%>?filename=<%=imagen.filename%>&producto=<%=producto.id%>"><i class="fa fa-plus-square"></i>Borrar</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<%})%>
+			</div>
+		</div>
+		<!--features_items-->
 	</div>
+	
+</div>
+</div>

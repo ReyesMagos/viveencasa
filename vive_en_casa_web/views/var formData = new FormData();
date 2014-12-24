@@ -1,0 +1,19 @@
+    var formData = new FormData();
+        jQuery.each($('#fileImportData')[0].files, function(i, file) {
+            formData.append('uploadFile-'+i, file);
+        });
+
+  $.ajax(
+    {
+        url : '/imagenProducto/upload/<%=producto.id%>',
+        type: "POST",
+        data : postData,
+        success:function(data, textStatus, jqXHR) 
+        {
+            //data: return data from server
+        },
+        error: function(jqXHR, textStatus, errorThrown) 
+        {
+            //if fails      
+        }
+    });

@@ -835,7 +835,7 @@ h2.title:before{
 
 
 h2.title {
-  color: #008000;
+  color: #028F76;
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: 700;
@@ -1885,7 +1885,15 @@ h2.title {
 
 
 .shopper-info .btn-primary {
-  background: #008000;
+  background: #604848;
+  border: 0 none;
+  border-radius: 0;
+  margin-right: 15px;
+  margin-top: 20px;
+}
+
+.shopper-info .btn-primary-danger {
+  background: #D14334;
   border: 0 none;
   border-radius: 0;
   margin-right: 15px;
@@ -2080,13 +2088,22 @@ h2.title {
 .blog-post-area  
 .single-blog-post 
 .btn-primary {
-  background:#008000;
+  background:#604848;
+  border: medium none;
+  border-radius: 0;
+  color: #000000;
+  margin-top: 17px;
+}
+
+.blog-post-area  
+.single-blog-post
+.btn-primary-danger{
+  background:#D14334;
   border: medium none;
   border-radius: 0;
   color: #FFFFFF;
   margin-top: 17px;
 }
-
 
 .pagination-area {
   margin-bottom:45px;
@@ -2242,6 +2259,11 @@ h2.title {
   margin-top: 0;
 }
 
+.blog-socials .btn.btn-primary-danger{
+  margin-top: 0;
+}
+
+
 .blog-socials ul li {
   
   float: left;
@@ -2268,7 +2290,18 @@ h2.title {
 
 .media-list .btn-primary, 
 .commnets .btn-primary {
-  background:#FC9A11;
+  background:#604848;
+  border: 0 none;
+  border-radius: 0;
+  color: #000000;
+  float: left;
+  font-size: 10px;
+  padding: 1px 7px;
+  text-transform: uppercase;
+}
+.media-list .btn-primary-danger, 
+.commnets .btn-primary-danger {
+  background:#D14334;
   border: 0 none;
   border-radius: 0;
   color: #FFFFFF;
@@ -2392,10 +2425,18 @@ h2.title {
 }
 
 .btn.btn-primary {
-  background:#008000;
+  background:#604848;
   border: 0 none;
   border-radius: 0;
   margin-top: 16px;
+}
+
+.btn.btn-primary-danger {
+  background:#D14334;
+  border: 0 none;
+  border-radius: 0;
+  margin-top: 16px;
+  color:#FFFFFF;
 }
 
 .blank-arrow {
@@ -2458,6 +2499,11 @@ h2.title {
 }
 
 #main-contact-form .btn-primary {
+  margin-bottom: 15px;
+  margin-top: 20px;
+}
+
+#main-contact-form .btn-primary-danger {
   margin-bottom: 15px;
   margin-top: 20px;
 }

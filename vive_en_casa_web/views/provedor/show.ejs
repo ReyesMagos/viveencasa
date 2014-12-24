@@ -1,0 +1,34 @@
+<div class="container">
+	<div class="bg">
+		
+		<div class="row">
+			<div class="col-sm-12 col-offset-1">
+				<div class="contact-form">
+					<h2 class="title text-center">Información Provedor</h2>
+					<div class="form-group col-md-2">
+						<label name="documento"  >Codigo Provedor</label>
+					</div>
+					<div class="form-group col-md-4">
+						<p ><%=provedor.codigo%></p>
+						
+					</div>
+					<div class="form-group col-md-2">
+						<label name="documento"  >Nombre Provedor</label>
+					</div>
+					<div class="form-group col-md-4">
+						<p ><%=provedor.nombre%></p>
+					</div>
+					<div class="form-group col-md-2">
+						<label name="documento"  >Descripcion Provedor</label>
+					</div>
+					<div class="form-group col-md-4">
+						<p ><%=provedor.descripcion%></p>
+					</div>
+					<a href="/producto/indexByProvider/<%=provedor.id%>" class="btn btn-success btn-sm ">Ver Productos Provedor</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+</div>

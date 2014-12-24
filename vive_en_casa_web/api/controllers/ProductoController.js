@@ -4,7 +4,6 @@
  * @description :: Server-side logic for managing productoes
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
-
 module.exports = {
     new: function(req, res) {
         Provedor.find(function(err, provedores) {
@@ -48,9 +47,8 @@ module.exports = {
     show: function(req, res, next) {
         var socket = req.socket;
         var io = sails.io;
-        socket.on('culo',function(msg) {
+        socket.on('culo', function(msg) {
             console.log('message: ' + msg);
-        
         });
         Producto.findOne(req.param('id'), function productoFounded(err, producto) {
             if (err) {
@@ -60,18 +58,16 @@ module.exports = {
             console.log(producto);
             Provedor.findOne(producto.provedor, function provedorFounded(err, provedor) {
                 /*/
-                ImagenProducto.findByProducto(producto.id, function imagesFounded(err, imagenes) {
-                    // body...
-                    res.view({
-                        producto: producto,
-                        provedor: provedor,
-                        imagenes:imagenes
-                    });
-                });
-                /*/
-
+ImagenProducto.findByProducto(producto.id, function imagesFounded(err, imagenes) {
+// body...
+res.view({
+producto: producto,
+provedor: provedor,
+imagenes:imagenes
+});
+});
+/*/
                 // do stuff
-
                 ImagenProducto.find()
                     .where({
                         producto: producto.id
@@ -86,15 +82,12 @@ module.exports = {
                             imagenes: imagenes
                         });
                     });
-
             });
         });
         // body...
     },
     edit: function(req, res) {
-
         Provedor.find(function provedoresFounded(err, provedores) {
-
             if (err) {
                 console.log(err);
                 return;
@@ -104,7 +97,6 @@ module.exports = {
                     console.log(err);
                     return;
                 }
-
                 Producto.findOne(req.param('id'), function productoFounded(err, producto) {
                     if (err) {
                         console.log(err);
@@ -115,13 +107,9 @@ module.exports = {
                         tiposDeProducto: tiposDeProducto,
                         producto: producto
                     });
-
                 });
-
             });
-
         });
-
     },
     update: function(req, res, next) {
         var producto = {
@@ -139,27 +127,28 @@ module.exports = {
         Producto.update(req.param('id'), producto, function productoUpdated(err) {
             if (err)
                 return next(err);
-
             res.redirect('producto/show/' + req.param('id'));
         });
-
     },
     index: function(req, res, next) {
         Producto.find(function productosFounded(err, productos) {
             if (err)
                 return next(err);
-            res.view({
-                productos: productos
+            ImagenProducto.find(function imagenesFounded(err, imagenes) {
+                if (err)
+                    return next(err);
+                res.view({
+                    productos: productos,
+                    imagenes: imagenes
+                });
             });
         });
-
     },
     destroy: function(req, res, next) {
         Producto.destroy(req.param('id'), function productoDestroyed(err) {
             // body...
             if (err)
                 return next(err);
-
             ImagenProducto.destroy()
                 .where({
                     producto: req.param('id')
@@ -170,7 +159,55 @@ module.exports = {
                         return next(err);
                     res.redirect('/producto');
                 });
-
         });
+    },
+    indexByProvider: function(req, res, next) {
+        Producto.find()
+            .where({
+                provedor: req.param('id')
+            })
+            .exec(function(err, productos) {
+                // body...
+                if (err)
+                    return next(err);
+                ImagenProducto.find(function imagenesFounded(err, imagenes) {
+                    if (err)
+                        return next(err);
+                    Provedor.findOne(req.param('id'), function provedorFounded(err, provedor) {
+                        if (err)
+                            return next(err);
+                        res.view({
+                            productos: productos,
+                            imagenes: imagenes,
+                            provedor: provedor
+                        });
+                    });
+
+                });
+            });
+    },indexByType: function(req, res, next) {
+        Producto.find()
+            .where({
+                tipoProducto: req.param('id')
+            })
+            .exec(function(err, productos) {
+                // body...
+                if (err)
+                    return next(err);
+                ImagenProducto.find(function imagenesFounded(err, imagenes) {
+                    if (err)
+                        return next(err);
+                    TipoProducto.findOne(req.param('id'), function provedorFounded(err, tipoProducto) {
+                        if (err)
+                            return next(err);
+                        res.view({
+                            productos: productos,
+                            imagenes: imagenes,
+                            tipoProducto: tipoProducto
+                        });
+                    });
+
+                });
+            });
     }
 };

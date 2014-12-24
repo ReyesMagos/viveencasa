@@ -36,6 +36,8 @@ process.chdir(__dirname);
     console.error('but if it doesn\'t, the app will run with the global sails instead!');
     return;
   }
+  
+
 
   // Try to get `rc` dependency
   var rc;
@@ -56,4 +58,5 @@ process.chdir(__dirname);
 
   // Start server
   sails.lift(rc('sails'));
+
 })();

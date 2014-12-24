@@ -143,7 +143,7 @@
 			
 			<div class="col-sm-9 padding-right">
 				<div class="features_items"><!--features_items-->
-				<h2 class="title text-center">Features Items</h2>
+				<h2 class="title text-center">Productos Tipo <%= tipoProducto.nombre %></h2>
 				<% _.each(productos, function(producto) { %>
 				<% var m = 0 %>
 				<% _.each(imagenes, function(imagen) { %>
@@ -165,8 +165,7 @@
 						</div>
 						<div class="choose">
 							<ul class="nav nav-pills nav-justified">
-								<li><a href="/producto/show/<%= producto.id%>"><i class="fa fa-plus-square"></i>Ver</a></li>
-
+								<li><a href="/producto/show/<%=producto.id%>"><i class="fa fa-plus-square"></i>ver</a></li>
 							</ul>
 						</div>
 					</div>
@@ -176,18 +175,21 @@
 				<%})%>
 				<%m=0 %>
 				<%})%>
-				<div >
-					
-					<ul class="pagination">
-						<li class="active"><a href="">1</a></li>
-						<li><a href="">2</a></li>
-						<li><a href="">3</a></li>
-						<li><a href="">&raquo;</a></li>
-					</ul>
-					
-				</div>
+				
+				
 				</div><!--features_items-->
+				<div >
+		
+					<ul class="pagination">
+					<li class="active"><a href="">1</a></li>
+					<li><a href="">2</a></li>
+					<li><a href="">3</a></li>
+					<li><a href="">&raquo;</a></li>
+				</ul>
+				
+				</div>
 			</div>
+
 		</div>
 	</div>
 </section>

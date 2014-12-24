@@ -1,0 +1,33 @@
+<div class="container">
+	<div class="bg">
+		
+		<div class="row">
+			<div class="col-sm-12 col-offset-1">
+				<div class="contact-form">
+					<h2 class="title text-center">Información Tipo Producto</h2>
+					<div class="form-group col-md-2">
+						<label name="documento"  >Codigo Tipo Producto</label>
+					</div>
+					<div class="form-group col-md-4">
+						<p ><%=tipoProducto.codigo%></p>
+					</div>
+					<div class="form-group col-md-2">
+						<label name="documento"  >Nombre Tipo Producto</label>
+					</div>
+					<div class="form-group col-md-4">
+						<p ><%=tipoProducto.nombre%></p>
+					</div>
+					<div class="form-group col-md-2">
+						<label name="documento"  >Descripcion Tipo Producto</label>
+					</div>
+					<div class="form-group col-md-4">
+						<p ><%=tipoProducto.descripcion%></p>
+					</div>
+					<a href="/producto/indexByType/<%=tipoProducto.id%>" class="btn btn-success btn-sm ">Ver Productos Tipo Producto</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+</div>
