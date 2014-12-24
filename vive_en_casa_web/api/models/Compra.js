@@ -8,7 +8,12 @@
 module.exports = {
 
   attributes: {
-  		fecha:{
+
+      codigo:{
+        type: 'integer',
+        autoIncrement: true
+       
+      },fecha:{
   			type: 'string',
   			required: true
   		},valorTotal:{
@@ -19,6 +24,17 @@ module.exports = {
   			collection: 'productocompra',
   			via:'compra'
   		}
-  }
+  },
+  beforeCreate : function(compra, cb){
+        console.log(compra.fecha);
+        Compra.count(function  (err, lenght) {
+          // body...:
+          if(err)
+            return cb(err);
+            compra.codigo=lenght+1;
+            cb();
+        });
+        
+    }
 };
 

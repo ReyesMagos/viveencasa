@@ -8,7 +8,10 @@
 module.exports = {
 
   attributes: {
-  	numeroCuotas:{
+    codigo:{
+      type: 'integer',
+      autoIncrement: true
+    },numeroCuotas:{
   		type:'integer',
   		required:true
   	},fecha:{
