@@ -1,0 +1,51 @@
+<div class="container">
+	<div class="bg">
+		
+		<div class="row">
+			<div class="col-sm-12">
+				
+				<h2 class="title text-center">Referencia Familiar</h2>
+				<table class="table table-hover" >
+					<th>Documento</th>
+					<th>Nombre</th>
+					<th>Teléfono</th>
+					<th>Dirección</th>
+					<th>Email</th>
+					
+					<th colspan="2" class="text-center">Agregar Referencias</th>
+					<th colspan="2" class="text-center">Acciones</th>
+					
+					<% _.each(clientes, function(cliente) { %>
+					<tr>
+						<td><%=cliente.documento%></td>
+						<td><%=cliente.nombre%> <%=cliente.apellido%></td>
+						<td><%=cliente.telefono%></td>
+						<td><%=cliente.direccion%></td>
+						<td><%=cliente.email%></td>
+						
+						<td>
+							<a href="/referenciafamiliar/new/<%=cliente.id%>" class="btn btn-success btn-sm ">Familiares</a>
+						</td>
+						<td>
+							<a href="/referenciacomercial/new/<%=cliente.id%>" class="btn btn-success btn-sm ">Comerciales</a>
+						</td>
+						<td>
+							<a href="/cliente/show/<%=cliente.id%>" class="btn btn-success btn-sm ">Detalles</a>
+						</td>
+						<td>
+							<form action="/cliente/destroy/<%= cliente.id%>" method="POST" accept-charset="utf-8">
+								<input type="hidden" name="_method" value="delete"/>
+								<input type="submit"  class="btn btn-sm btn-danger" value="Eliminar"/>
+								<input type="hidden" name="_csrf" value="<%= _csrf %>"/>
+							</form>
+						</td>
+					</tr>
+					<%})%>
+				</table>
+				
+			</div>
+			
+			
+		</div>
+	</div>
+</div>

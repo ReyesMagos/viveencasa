@@ -6,13 +6,15 @@
 	    			<div class="contact-form">
 	    				<h2 class="title text-center">Referencia Familiar</h2>
 	    				<!-- <div class="status alert alert-success" ></div>-->
+	    				<script type="text/javascript">var x="";</script>
 	    					<% if(flash && flash.err) { %>
 							<ul class="alert alert-success">
 								<% Object.keys(flash.err).forEach(function(error){ %>
-								<li> <%- JSON.stringify(flash.err[error]) %></li>
-								<% }) %>
-							</ul>
+									
+									<script type="text/javascript"> x=x+<%- JSON.stringify(flash.err[error]) %>
+								<% }) %></script> 
 							<% } %>
+							<script type="text/javascript">alert(x);</script>
 	    				
 
 				    	<form id="main-contact-form" class="contact-form row" name="contact-form" method="post" action="/referenciafamiliar/create/<%=cliente.id%>">
@@ -21,7 +23,7 @@
 							<label >Nombre</label>
 						</div>
 				            <div class="form-group col-md-4">
-				                <input type="text" name="nombre" class="form-control" required="required" >
+				                <input type="text" name="nombre" class="form-control"  >
 				            </div>
 				            <div class="form-group col-md-2">
 							<label >Apellido</label>

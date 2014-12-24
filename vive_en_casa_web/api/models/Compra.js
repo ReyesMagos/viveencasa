@@ -8,7 +8,17 @@
 module.exports = {
 
   attributes: {
-
+  		fecha:{
+  			type: 'string',
+  			required: true
+  		},valorTotal:{
+        type:'float'
+      },cliente:{
+  			model:'Cliente'
+  		},productocompra:{
+  			collection: 'productocompra',
+  			via:'compra'
+  		}
   }
 };
 

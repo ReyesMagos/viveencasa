@@ -43,7 +43,13 @@ module.exports = {
   		},referenciasComerciales:{
   			collection: 'ReferenciaComercial',
   			via: 'propietario'
-  		}
+  		}, compra:{
+        collection:'Compra',
+        via: 'cliente'
+      }, planSepare:{
+        collection:'planSepare',
+        via: 'cliente'
+      }
   }
 };
 

@@ -1,0 +1,119 @@
+<div class="container">
+	<div class="bg">
+		
+		<div class="row">
+			<div class="col-sm-11">
+				<div class="contact-form">
+					<h2 class="title text-center">Referencia Familiar</h2>
+					<!-- <div class="status alert alert-success" ></div>-->
+					<% if(flash && flash.err) { %>
+					<ul class="alert alert-success">
+						<% Object.keys(flash.err).forEach(function(error){ %>
+						<li> <%- JSON.stringify(flash.err[error]) %></li>
+						<% }) %>
+					</ul>
+					<% } %>
+					
+					<form id="main-contact-form" class="contact-form row" name="contact-form" method="post" action="/cliente/create">
+						<div class="form-group col-md-2">
+							<label name="tipoDocumento">Tipo de Documento</label>
+						</div>
+						<div class="form-group col-md-4">
+							<select  name="tipoDocumento" class="form-control" required="required" >
+								<option value="Cédula">Cédula</option>
+								<option value="Pasaporte">Pasaporte</option>
+							</select>
+						</div>
+						<div class="form-group col-md-2">
+							<label  >Cantidad</label>
+						</div>
+						<div class="form-group col-md-4">
+							<input type="number" name="cantidad" class="form-control" required="required" >
+						</div>
+						<div class="form-group col-md-2">
+							<label  >Descripcion</label>
+						</div>
+						<div class="form-group col-md-4">
+							<textarea type="text" name="descripcion" class="form-control" required="required" ></textarea>
+						</div>
+						
+												
+						<div class="form-group col-md-4">
+							<input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
+						</div>
+					</form>
+				</div>
+			</div>
+			
+			<a href="#myModal"></a>
+		</div>
+	</div>
+</div>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$("#myModal").modal('show');
+	});
+</script>
+<div id="myModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title title">Nueva Compra</h4>
+				
+			</div>
+			<div class="row">
+				<div class="col-sm-11">
+					<div class="contact-form">
+						
+						<!-- <div class="status alert alert-success" ></div>-->
+						<% if(flash && flash.err) { %>
+						<ul class="alert alert-success">
+							<% Object.keys(flash.err).forEach(function(error){ %>
+							<li> <%- JSON.stringify(flash.err[error]) %></li>
+							<% }) %>
+						</ul>
+						<% } %>
+						
+						<div class="modal-body">
+							<form id="main-contact-form" class="contact-form row" name="contact-form" method="post" action="/compra/create">
+								<div class="form-group col-md-2">
+									<label name="formaPago"  >Cliente: </label>
+								</div>
+								<div class="form-group col-md-5">
+									<p><%=cliente.nombre%> <%=cliente.apellido%></p>
+								</div>
+								<div class="form-group col-md-2">
+									<label name="formaPago"  >Documento: </label>
+								</div>
+								<div class="form-group col-md-2">
+									<p><%=cliente.documento%></p>
+									<input type="hidden" name="cliente" value="<%=cliente.id%>"/>
+								</div>
+								<div class="form-group col-md-4">
+									<label name="fecha" >Fecha y Hora</label>
+								</div>
+								<div class="form-group col-md-5">
+									<input type="datetime-local" name="fecha" class="form-control" required="required" >
+								</div>
+								<input type="submit" name="submit" class="btn btn-primary pull-right" value="Guardar y continuar">
+
+								
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
