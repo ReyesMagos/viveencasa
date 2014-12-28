@@ -11,25 +11,49 @@
 
     	
 });
-});
 
+  
+
+});
+	  $(function() {
+    $('table').stickyTableHeaders();
 
 </script>
 	
 		
 		<div class="row">
-			<div class="col-sm-12">
-				
+
+			<div>
 				<h2 class="title text-center">Clientes</h2>
-				<table class="table table-hover" >
-					<th>Documento</th>
+				<table id="table" class="table table-striped" >
+
+					<thead >
+					<th >Documento</th>
 					<th>Nombre</th>
 					<th>Teléfono</th>
 					<th>Dirección</th>
 					<th>Email</th>
 					
 					<th colspan="2" class="text-center">Agregar Referencias</th>
-					<th colspan="2" class="text-center">Acciones</th>
+					<th colspan="3" class="text-center">Acciones</th>
+					</thead>
+					</table>
+			</div>
+			<div class="col-sm-12" style="overflow: auto; height: 500px;">
+				
+				
+				<table id="table" class="table table-striped" >
+
+					<!-- <thead >
+					<th >Documento</th>
+					<th>Nombre</th>
+					<th>Teléfono</th>
+					<th>Dirección</th>
+					<th>Email</th>
+					
+					<th colspan="2" class="text-center">Agregar Referencias</th>
+					<th colspan="3" class="text-center">Acciones</th>
+					</thead> -->
 					
 					<% _.each(clientes, function(cliente) { %>
 					<tr>
@@ -66,63 +90,12 @@
 					<%})%>
 				</table>
 				
+				
 			</div>
-		<a href="#myModal">modal</a>
+	
 		</div>
 	</div>
 </div>
 
 
 
-<div id="myModal" class="modal fade">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title title">Nueva Compra</h4>
-				
-			</div>
-			<div class="row">
-				<div class="col-sm-11">
-					<div class="contact-form">
-						
-						<!-- <div class="status alert alert-success" ></div>-->
-						<% if(flash && flash.err) { %>
-						<ul class="alert alert-success">
-							<% Object.keys(flash.err).forEach(function(error){ %>
-							<li> <%- JSON.stringify(flash.err[error]) %></li>
-							<% }) %>
-						</ul>
-						<% } %>
-						
-						<div class="modal-body">
-							<form id="main-contact-form" class="contact-form row" name="contact-form" method="post" action="/compra/create">
-								
-								
-								<div class="form-group col-md-2">
-									
-									<input type="hidden" name="cliente" value=""/>
-								</div>
-								<div class="form-group col-md-4">
-									<label name="fecha" >Fecha y Hora</label>
-								</div>
-								<div class="form-group col-md-5">
-									<input type="datetime-local" name="fecha" class="form-control" required="required" >
-								</div>
-								
-
-								<div class="form-group col-md-5 pull-right">
-							
-							<button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
-							<input type="submit" name="submit" class="btn btn-primary pull-right" value="Continuar">
-						</div>
-							</form>
-						</div>
-						
-					</div>
-				</div>
-				
-			</div>
-		</div>
-	</div>
-</div>
