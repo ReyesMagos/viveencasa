@@ -15,5 +15,5 @@ module.exports.bootstrap = function(cb) {
     // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
     cb();
     var io = sails.io;
-    
+   	 sails.date= require('../own_modules/getDate.js');
 };
