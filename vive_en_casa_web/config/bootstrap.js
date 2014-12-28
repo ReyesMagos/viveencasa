@@ -16,4 +16,5 @@ module.exports.bootstrap = function(cb) {
     cb();
     var io = sails.io;
    	 sails.date= require('../own_modules/getDate.js');
+   	 sails.generateErrMessage= require('../own_modules/generateErrMessage.js');
 };

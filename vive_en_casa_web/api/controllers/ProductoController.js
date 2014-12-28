@@ -24,6 +24,10 @@ module.exports = {
         });
     },
     create: function(req, res) {
+        if (req.param('alto') == "" ||  req.param('alto') == null)
+            console.log('Vacion');
+        else
+            console.log('Vacio1' + req.param('alto'));
         var producto = {
             codigo: req.param('codigo'),
             nombre: req.param('nombre'),
@@ -38,8 +42,10 @@ module.exports = {
         }
         Producto.create(producto, function productoCreated(err, producto) {
             if (err) {
-                console.log(err);
-                return;
+                req.session.flash={
+                    err:sails.generateErrMessage(err)
+                }
+                return res.redirect('producto/new/');;
             }
             res.redirect('producto/show/' + producto.id);
         });
@@ -131,7 +137,7 @@ imagenes:imagenes
         });
     },
     index: function(req, res, next) {
-        Producto.find(function productosFounded(err, productos) {
+        Producto.find().limit(15).exec(function productosFounded(err, productos) {
             if (err)
                 return next(err);
             ImagenProducto.find(function imagenesFounded(err, imagenes) {
@@ -185,7 +191,8 @@ imagenes:imagenes
 
                 });
             });
-    },indexByType: function(req, res, next) {
+    },
+    indexByType: function(req, res, next) {
         Producto.find()
             .where({
                 tipoProducto: req.param('id')
@@ -209,5 +216,9 @@ imagenes:imagenes
 
                 });
             });
+    },
+    loadContent: function(req, res, next) {
+        var persona = ['oscar', 'culito', 'amigo'];
+        res.send(persona);
     }
 };

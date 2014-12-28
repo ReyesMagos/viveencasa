@@ -1,40 +1,30 @@
 <script>
 	$(document).ready(function() {
-		   status('Choose a file :)');
+
+            var count = 0;
+            $(window).scroll(function(){
+                    if  ($(window).scrollTop() == $(document).height() - $(window).height()){
+                    	alert('entre');
+                       loadArticle(count);
+                       count++;
+                    }
+            }); 
  
-    // Check to see when a user has selected a file                                                                                                                
-    var timerId;
-    timerId = setInterval(function() {
-	if($('#userPhotoInput').val() !== '') {
-            clearInterval(timerId);
- 
-            $('#uploadForm').submit();
-        }
-    }, 500);
- 
-    $('#uploadForm').submit(function() {
-        status('uploading the file ...');
-        alert('submit');
- 
-        $(this).ajaxSubmit({                                                                                                                 
- 
-            error: function(xhr) {
-		status('Error: ' + xhr.status);
-            },
- 
-            success: function(response) {
-		//TODO: We will fill this in later
+            function loadArticle(pageNumber){    
+                    $.ajax({
+                        url: "/producto/loadContent",
+                        type:'POST',
+                        data: "number="+ pageNumber, 
+                        success: function(html){
+                        	html.forEach(function(entry) {
+    							alert('recibi '+ entry );
+							});
+                        	
+                            $("#content").append(html);   // This will be the div where our content will be loaded
+                        }
+                    });
+                return false;
             }
-	});
- 
-	// Have to stop the form from submitting and causing                                                                                                       
-	// a page refresh - don't forget this                                                                                                                      
-	return false;
-    });
-	 
-	    function status(message) {
-		$('#status').text(message);
-	    }
 	});
 </script>
 
