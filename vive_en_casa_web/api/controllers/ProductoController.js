@@ -24,15 +24,28 @@ module.exports = {
         });
     },
     create: function(req, res) {
-        if (req.param('alto') == "" ||  req.param('alto') == null)
-            console.log('Vacion');
-        else
-            console.log('Vacio1' + req.param('alto'));
+        var altitud = 0;
+        var anchitud = 0;
+        if (req.param('alto') == "" ||  req.param('alto') == null) {
+            altitud = 0;
+            console.log("alto vacio mostrare " + altitud);
+        } else {
+            altitud = req.param('alto');
+            console.log("alto no vacio mostrare " + altitud);
+        }
+
+        if (req.param('ancho') == "" ||  req.param('ancho') == null) {
+            anchitud = 0;
+            console.log("ancho vacio mostrare " + anchitud);
+        } else {
+            anchitud = req.param('ancho');
+            console.log("ancho no vacio mostrare " + anchitud);
+        }
         var producto = {
             codigo: req.param('codigo'),
             nombre: req.param('nombre'),
-            ancho: req.param('ancho'),
-            alto: req.param('alto'),
+            ancho: anchitud,
+            alto: altitud,
             descripcion: req.param('descripcion'),
             cantidadBodega: req.param('cantidadBodega'),
             garantia: req.param('garantia'),
@@ -40,10 +53,11 @@ module.exports = {
             provedor: req.param('provedor'),
             tipoProducto: req.param('tipoProducto')
         }
+        console.log("este es el producto a crear " + producto);
         Producto.create(producto, function productoCreated(err, producto) {
             if (err) {
-                req.session.flash={
-                    err:sails.generateErrMessage(err)
+                req.session.flash = {
+                    err: sails.generateErrMessage(err)
                 }
                 return res.redirect('producto/new/');;
             }
@@ -63,17 +77,6 @@ module.exports = {
             }
             console.log(producto);
             Provedor.findOne(producto.provedor, function provedorFounded(err, provedor) {
-                /*/
-ImagenProducto.findByProducto(producto.id, function imagesFounded(err, imagenes) {
-// body...
-res.view({
-producto: producto,
-provedor: provedor,
-imagenes:imagenes
-});
-});
-/*/
-                // do stuff
                 ImagenProducto.find()
                     .where({
                         producto: producto.id
@@ -137,7 +140,7 @@ imagenes:imagenes
         });
     },
     index: function(req, res, next) {
-        Producto.find().limit(15).exec(function productosFounded(err, productos) {
+        Producto.find().limit(3).exec(function productosFounded(err, productos) {
             if (err)
                 return next(err);
             ImagenProducto.find(function imagenesFounded(err, imagenes) {
@@ -218,7 +221,43 @@ imagenes:imagenes
             });
     },
     loadContent: function(req, res, next) {
+        var count = req.param('number');
+        console.log(count);
         var persona = ['oscar', 'culito', 'amigo'];
-        res.send(persona);
+        var skip = 3 * count;
+        var count2 = 0;
+
+        console.log('skip: ' + skip);
+        //res.send(persona);
+        Producto.find().skip(skip).limit(3).exec(function productosFounded(err, productos) {
+            if (err)
+                return next(err);
+            var images = [];
+            productos.forEach(function(producto) {
+                ImagenProducto.find()
+                    .where({
+                        producto: producto.id
+                    })
+                    .exec(function(err, imagess) {
+
+                        images[count2]=imagess.filename;
+                        console.log('imagen: ' + JSON.stringify(imagess));
+                        count2++;
+                        if ((count2 + 1) == 3) {
+                            res.send([{
+                                productos: productos,
+                                imagenes: images
+                            }]);
+                        }
+                    });
+            });
+
+
+
+
+
+
+        });
+
     }
 };
