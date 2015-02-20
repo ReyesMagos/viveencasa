@@ -1,3 +1,35 @@
+<script>
+	$(document).ready(function() {
+	    var count = 1;
+	    $('#loadMoreButton').click(function function_name (argument) {
+	    	// body... 1692876
+	    	alert('loadMore');
+	    	   loadArticle(count);
+	            count++;
+
+	    });
+	        
+
+	    function loadArticle(pageNumber) {
+	        $.ajax({
+	            url: "/producto/loadContent",
+	            type: 'POST',
+	            data: "number=" + pageNumber,
+	            success: function(html) {
+	                html.forEach(function(entry) {
+	                	imagen=entry.imagenes[0];
+	                    alert('recibi ' + entry.productos[0].nombre + "; "+entry.productos[1].nombre+"; "+ imagen);
+	                   $("#content").append('<div class="col-sm-4"><div class="product-image-wrapper"><div class="single-products"><div class="productinfo text-center"><img src="/images/'+entry.imagenes[0].filename+'"height="268" width="249" /><h2>'+entry.productos[0].precio+'</h2><p>'+entry.productos[0].nombre+'</p></div><div class="product-overlay"><div class="overlay-content"><h2>'+entry.productos[0].precio+'</h2><p>'+entry.productos[0].nombre+'</p></div></div></div><div class="choose"><ul class="nav nav-pills nav-justified"><li><a href="/producto/show/entry.productos[0].id"><i class="fa'+'fa-plus-square"></i>Ver</a></li></ul></div></div></div>');
+	                     $("#content").append('<div class="col-sm-4"><div class="product-image-wrapper"><div class="single-products"><div class="productinfo text-center"><img src="/images/a"height="268" width="249" /><h2>'+entry.productos[1].precio+'</h2><p>'+entry.productos[1].nombre+'</p></div><div class="product-overlay"><div class="overlay-content"><h2>'+entry.productos[1].precio+'</h2><p>'+entry.productos[1].nombre+'</p></div></div></div><div class="choose"><ul class="nav nav-pills nav-justified"><li><a href="/producto/show/entry.productos[0].id"><i class="fa'+'fa-plus-square"></i>Ver</a></li></ul></div></div></div>');
+	                     
+	                });
+
+	            }
+	        });
+	        return false;
+	    }
+	});
+</script>
 <section>
 	<div class="container">
 		<div class="row">
@@ -126,22 +158,10 @@
 					</div>
 					</div><!--/brands_products-->
 					
-					<div class="price-range"><!--price-range-->
-					<h2>Price Range</h2>
-					<div class="well">
-						<input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-						<b>$ 0</b> <b class="pull-right">$ 600</b>
-					</div>
-					</div><!--/price-range-->
-					
-					<div class="shipping text-center"><!--shipping-->
-					<img src="images/home/shipping.jpg" alt="" />
-					</div><!--/shipping-->
-					
 				</div>
 			</div>
 			
-			<div class="col-sm-9 padding-right">
+			<div id="content" class="col-sm-9 padding-right">
 				<div class="features_items"><!--features_items-->
 				<h2 class="title text-center">Producto</h2>
 				<% _.each(productos, function(producto) { %>
@@ -166,7 +186,6 @@
 						<div class="choose">
 							<ul class="nav nav-pills nav-justified">
 								<li><a href="/producto/show/<%= producto.id%>"><i class="fa fa-plus-square"></i>Ver</a></li>
-
 							</ul>
 						</div>
 					</div>
@@ -177,14 +196,7 @@
 				<%m=0 %>
 				<%})%>
 				<div >
-					
-					<ul class="pagination">
-						<li class="active"><a href="">1</a></li>
-						<li><a href="">2</a></li>
-						<li><a href="">3</a></li>
-						<li><a href="">&raquo;</a></li>
-					</ul>
-					
+					<button id="loadMoreButton" class="btn btn-default">Cargar Mas</button>
 				</div>
 				</div><!--features_items-->
 			</div>

@@ -97,9 +97,9 @@ module.exports = {
                 provedor: provedor
             });
         });
-    },
+    },  /*/,
     index: function(req, res, next) {
-
+      
         Provedor.find(function provedoresFounded(err, provedores) {
             if (err) {
                 return next(err);
@@ -109,7 +109,8 @@ module.exports = {
                 provedores: provedores
             });
         });
-    },destroy:function (req,res, next) {
+
+    },/*/destroy:function (req,res, next) {
         Provedor.destroy(req.param('id'), function  (err) {
             // body...
             if(err){
