@@ -114,7 +114,7 @@ module.exports = {
         }
         Cliente.update(req.param('id'), cliente, function clienteUpdated(err) {
             if (err) {
-                return next('err');
+                return next(err);
             }
             return res.redirect('/cliente/show/' + req.param('id'));
         });
@@ -122,7 +122,7 @@ module.exports = {
     destroy: function(req, res, next) {
         Cliente.destroy(req.param('id'), function clienteRemoved(err) {
             if (err) {
-                return next('err');
+                return next(err);
             }
             return res.redirect('/cliente/index');
         });
